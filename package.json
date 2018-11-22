@@ -1,0 +1,24 @@
+{
+  "name": "websocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ozgurkaracam/websocket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ozgurkaracam/websocket/issues"
+  },
+  "homepage": "https://github.com/ozgurkaracam/websocket#readme",
+  "dependencies": {
+    "nodemon": "^1.18.6",
+    "socket.io": "^2.1.1"
+  }
+}
