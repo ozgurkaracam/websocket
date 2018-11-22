@@ -8,17 +8,28 @@
     <script>
         $(()=>{
             const socket=io.connect("http://localhost:3000/creative93");
-            $("button").on("click",()=>{
+            $("#gonder").on("click",()=>{
                socket.emit("isimyaz");
             });
             socket.on("gonder",(data)=>{
                 $("div").append(data.isim+"<br>");
             });
+            $("#joinRoom").on("click",()=>{
+               socket.emit("joinRoom",{roomName:$("#roomName").val(),nickname:$("#nickName").val()});
+            });
+
+            socket.on("new join",(data)=>{
+                $("#logs").append("<p>odaya "+data.nickname+" katıldı.</p>");
+            });
         });
     </script>
 </head>
 <body>
-    <button>asdas</button>
+    <button id="gonder">asdas</button>
     <div></div>
+    Nickname: <input type="text" id="nickName"><br>
+    Oda :<input type="text" id="roomName"><br>
+    <button id="joinRoom">Odaya Gir!</button>
+    <div id="logs"></div>
 </body>
 </html>

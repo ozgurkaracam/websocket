@@ -15,4 +15,10 @@ nsp.on("connection",(socket)=>{
     socket.on("isimyaz",()=>{
        socket.broadcast.emit("gonder",{isim : "özgür"});
     });
+
+    socket.on("joinRoom",(data)=>{
+        socket.join(data.roomName,()=>{
+                socket.to(data.roomName).emit('new join',{nickname: data.nickname});
+        });
+    });
 });
