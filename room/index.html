@@ -7,17 +7,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(()=>{
-            const socket=io.connect("http://localhost:3000/creative93");
+            const socket=io.connect("http://localhost:3000");
             $("#gonder").on("click",()=>{
-               socket.emit("isimyaz");
+                socket.emit("isimyaz");
             });
             socket.on("gonder",(data)=>{
                 $("div").append(data.isim+"<br>");
             });
             $("#joinRoom").on("click",()=>{
-               socket.emit("joinRoom",{roomName:$("#roomName").val(),nickname:$("#nickName").val()});
-               $("#joinRoom , #roomName").attr("disabled","disabled");
-               $("#leaveRoom").show();
+                socket.emit("joinRoom",{roomName:$("#roomName").val(),nickname:$("#nickName").val()});
+                $("#joinRoom , #roomName").attr("disabled","disabled");
+                $("#leaveRoom").show();
             });
 
             socket.on("new join",(data)=>{
@@ -32,7 +32,7 @@
 
             });
             socket.on("leavedRoom",(data)=>{
-                        $("#logs").html=data.nickname+" odadan ayrıldı.";
+                $("#logs").html=data.nickname+" odadan ayrıldı.";
             });
         });
     </script>
@@ -43,13 +43,13 @@
     </style>
 </head>
 <body>
-    <button id="gonder">asdas</button>
-    <div></div>
-    Nickname: <input type="text" id="nickName"><br>
-    Oda :<input type="text" id="roomName"><br>
-    <button id="joinRoom">Odaya Gir!</button>
-    <button id="leaveRoom">Çık!</button>
-    <div id="logs"></div>
-    <div id="count"></div>
+<button id="gonder">asdas</button>
+<div></div>
+Nickname: <input type="text" id="nickName"><br>
+Oda :<input type="text" id="roomName"><br>
+<button id="joinRoom">Odaya Gir!</button>
+<button id="leaveRoom">Çık!</button>
+<div id="logs"></div>
+<div id="count"></div>
 </body>
 </html>

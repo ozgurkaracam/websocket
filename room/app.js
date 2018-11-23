@@ -8,23 +8,22 @@ server.listen(3000);
 
 const io=socketio.listen(server);
 
-const nsp=io.of("/creative93");
-
-nsp.on("connection",(socket)=>{
+io.on("connection",(socket)=>{
     console.log("connected");
     socket.on("isimyaz",()=>{
-       socket.broadcast.emit("gonder",{isim : "özgür"});
+        socket.broadcast.emit("gonder",{isim : "özgür"});
     });
 
     socket.on("joinRoom",(data)=>{
+        let cnt=getCount(io,data.roomName);
         socket.join(data.roomName,()=>{
-                socket.to(data.roomName).emit('new join',{nickname:data.nickname});
+            io.to(data.roomName).emit('new join',{nickname:data.nickname});
         });
     });
 
     socket.on("leaveRoom",(data)=>{
         socket.leave(data.roomName,()=>{
-            socket.to(data.roomName).emit("leavedRoom",{nickname:data.nickname});
+            io.to(data.roomName).emit("leavedRoom",{nickname:data.nickname});
         });
     });
 });
